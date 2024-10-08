@@ -1,0 +1,69 @@
+.body1{
+    background-image: url('../assets/images/Captura\ de\ tela\ 2024-10-03\ 101953.png'); 
+    background-size: cover;  
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Garante que a imagem de fundo cubra a altura total da tela */
+    display: flex;
+    box-shadow: 5px 15px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+.agenda{
+    background-color: #EEDF7A;
+    background-blend-mode: overlay; /* Mistura a cor de fundo com a textura */
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5); /* Sombra abaixo */
+    min-height: 300px;
+    max-width: 700px;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+}
+
+.agenda>.row{
+    background-color: white;
+    border-radius: 10cap;
+}
+
+.body2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body4{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.body5{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.white{
+    color: white;
+}
+
+.metade1{
+    background-color: #D8A25E; /* Cor da parte superior */
+    width: 100%;
+}
+.metade2{
+    background-color: #343131; /* Cor da parte superior */
+    width: 100%;
+
+}
+
+.conteiner.transicao {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.conteiner.transicao img {
+    width: 100%; /* A imagem ocupará 100% da largura do container */
+    height: 700px; /* Mantém a proporção da imagem */
+    display: block; /* Remove qualquer espaço extra abaixo da imagem */
+}
