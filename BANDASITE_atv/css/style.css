@@ -1,5 +1,5 @@
 .body1{
-    background-image: url('../assets/images/Captura\ de\ tela\ 2024-10-03\ 101953.png'); 
+    background-image: url('../assets/images/head.png'); 
     background-size: cover;  
     background-repeat: no-repeat;
     min-height: 100vh; /* Garante que a imagem de fundo cubra a altura total da tela */
@@ -66,4 +66,16 @@
     width: 100%; /* A imagem ocupará 100% da largura do container */
     height: 700px; /* Mantém a proporção da imagem */
     display: block; /* Remove qualquer espaço extra abaixo da imagem */
+}
+
+.imgtexto{
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+.red{
+    color: #A04747;
+}
+
+.yellow{
+    color: #EEDF7A;
 }
