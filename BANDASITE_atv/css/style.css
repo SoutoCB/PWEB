@@ -79,3 +79,8 @@
 .yellow{
     color: #EEDF7A;
 }
+
+.backyellow {
+    color: #EEDF7A;
+    background-color: #D8A25E;
+}
