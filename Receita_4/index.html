@@ -7,8 +7,8 @@
       <meta charset="UTF-8">    
       
       <style>
-         .blue{
-            color: aqua;
+         .brown{
+            color: brown;
          }
       </style>
 
@@ -26,11 +26,11 @@
 
    <script>
 
-      let cervejas = ["Guiness", "Desperados", "Becks"]
+      let cervejas = ["Guiness", "Desperados", "Becks", "Skoll", "Brahma", "Spaten"]
 
       function transformar(item){
 
-        return `<tr class="blue"><td>${item}</td></tr>`
+        return `<tr class="brown"><td>${item}</td></tr>`
 
       }
 
@@ -40,13 +40,31 @@
 
         //  let cervejasHtml = [`<h1>${cervejas[0]}</h1>`,`<h1>${cervejas[1]}</h1>`, `<h1>${cervejas[2]}</h1>`] 
         let cervejasHtml = cervejas.map(transformar)
-         
 
-         div.innerHTML = `<table>${cervejasHtml.join("")}</table>`
+         div.innerHTML = `
+         <table>${cervejasHtml.join("")}</table>
+         <button id="botaoOrdenar">Ordenar Cervejas</button>
+         <button id="botaoEmbara">Embaralhar Cervejas</button>
+         `
+
+         document.getElementById("botaoOrdenar").addEventListener("click", ordenarDiv);
+
+         document.getElementById("botaoEmbara").addEventListener("click", embaraDiv)
 
       }
 
-      
+
+      function ordenarDiv(){
+         cervejas = cervejas.sort();
+         
+         carregarDiv();
+      }
+
+      function embaraDiv(){
+         cervejas.sort(() => Math.random() - 0.5);
+
+         carregarDiv();
+      }
 
       let botao = document.getElementById("botaoCarregar")
 
