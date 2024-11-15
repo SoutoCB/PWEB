@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+
+      <meta charset="UTF-8">      
+      <style>
+         body {
+             font-family: sans-serif;
+             margin: 20px;
+             background-color: #f5f5f5;
+         }
+ 
+         table {
+             border-collapse: collapse;
+             border: 2px solid rgb(140, 140, 140);
+             font-size: 0.9rem;
+             margin-top: 15px;
+             width: 100%;
+             max-width: 600px;
+             background-color: #fff;
+         }
+ 
+         caption {
+             caption-side: bottom;
+             padding: 10px;
+             font-weight: bold;
+         }
+ 
+         thead,
+         tfoot {
+             background-color: rgb(52, 137, 177);
+         }
+ 
+         th,
+         td {
+             border: 1px solid rgb(140, 140, 140);
+             padding: 10px;
+             text-align: left;
+         }
+ 
+         tbody tr:nth-of-type(even) {
+             background-color: rgb(237, 238, 242);
+         }
+ 
+         tfoot th {
+             text-align: right;
+         }
+ 
+         tfoot td {
+             font-weight: bold;
+         }
+     </style>
+   </head>
+
+
+
+   <body>
+
+      <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+      <div><button id="botaoCarregar2">Carregando cafés...</button></div>
+
+
+      <div id="cervejasDiv"></div>  
+      <div id="cafesDiv"></div>           
+
+   </body>   
+
+   
+
+   <script type="module">
+
+
+    import * as funcs from './func.js';
+
+
+      
+
+      //cs é um array de cervejas
+
+      const colunasNomeCervejas = ["Nome", "Álcool", "Estilo", "IBU"]
+      const propriedadesCervejas = ["name", "alcohol", "style", "ibu"]
+
+      const colunasNomeCafes = ["Nome", "Origem", "Variedade", "Nota"]
+      const propriedadesCafes = ["blend_name", "origin", "variety", "notes"]
+      
+      async function carregarCervejas(){
+         fetch("https://random-data-api.com/api/v2/beers?size=3").then( res => res.json()
+            ).then(json => funcs.carregarDiv(json, "cervejasDiv", propriedadesCervejas, colunasNomeCervejas)
+               ).catch(
+                  err =>document.getElementById("cervejasDiv").innerHTML = "Fudeu..."
+               )
+      }
+
+      async function carregarCafes(){
+         fetch("https://random-data-api.com/api/coffee/random_coffee?size=3").then( res => res.json()
+            ).then(json => funcs.carregarDiv(json, "cafesDiv", propriedadesCafes, colunasNomeCafes )
+               ).catch(
+                  err =>document.getElementById("cafesDiv").innerHTML = "Fudeu..."
+               )
+        }
+
+
+
+      let botao = document.getElementById("botaoCarregar")
+
+      botao.addEventListener("click", () => carregarCervejas() )   
+
+      let botao2 = document.getElementById("botaoCarregar2")
+
+      botao2.addEventListener("click", () => carregarCafes() )                 
+
+      
+
+   </script>
+
+</html>
