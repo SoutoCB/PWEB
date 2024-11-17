@@ -4,7 +4,54 @@
 
    <head>
 
-      <title>ReactZero</title>      
+      <title>ReactZero</title>  
+      <style>
+         body {
+             font-family: sans-serif;
+             margin: 20px;
+             background-color: #f5f5f5;
+         }
+ 
+         table {
+             border-collapse: collapse;
+             border: 2px solid rgb(140, 140, 140);
+             font-size: 0.9rem;
+             margin-top: 15px;
+             width: 100%;
+             max-width: 600px;
+             background-color: #fff;
+         }
+ 
+         caption {
+             caption-side: bottom;
+             padding: 10px;
+             font-weight: bold;
+         }
+ 
+         thead,
+         tfoot {
+             background-color: rgb(223, 233, 31);
+         }
+ 
+         th,
+         td {
+             border: 1px solid rgb(140, 140, 140);
+             padding: 10px;
+             text-align: left;
+         }
+ 
+         tbody tr:nth-of-type(even) {
+             background-color: rgb(237, 238, 242);
+         }
+ 
+         tfoot th {
+             text-align: right;
+         }
+ 
+         tfoot td {
+             font-weight: bold;
+         }
+     </style>    
 
    </head>
 
@@ -28,22 +75,52 @@
 
         React.createElement(
 
-            'h1',
+            'table',
 
-            {id: 'my-heading'},
+            null,
+            React.createElement(
+               'thead',
+               null,
+               null,
+               React.createElement(
+
+                  'tr',
+
+                  null,
+
+                  null,
+
+                  React.createElement('th', null, 'Bebida'),
+                  React.createElement('th', null, 'Valor'),
+
+               ),
+            ),
             React.createElement(
 
-                'span',
+                'tr',
 
                 null,
 
-                'React ',
+                null,
 
-                React.createElement('em', null, 'é muito'),
+                React.createElement('td', null, 'Skoll'),
+                React.createElement('td', null, 'R$4,00'),
+
+            ),
+            React.createElement(
+
+                'tr',
+
+                null,
+
+                null,
+
+                React.createElement('td', null, 'Devassa'),
+                React.createElement('td', null, 'R$5,00'),
 
             ),
 
-            ' massa!'
+            null
 
             ),
 
