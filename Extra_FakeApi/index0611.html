@@ -14,8 +14,8 @@
 </head>
 <body>
     <div>
-        <label for="quantidade">Quantidade de pessoas:</label>
-        <input type="number" id="quantidade" min="1" value="5">
+        <label for="quantidade">Quantidade de pessoas por vez:</label>
+        <input type="number" id="quantidade" min="1" value="10">
         <button id="botaoTabela">Carregar Tabela</button>
     </div>
     <div>
@@ -26,14 +26,57 @@
         <label for="nomeFiltro">Pesquisar Nome:</label>
         <input type="search" id="nomeFiltro" placeholder="Digite um nome">
     </div>
-    <div id="tabela"></div>
-</body>
+    <div id="scrollContainer" style="height: 400px; overflow-y: auto; border: 1px solid #000;">
+        <div id="tabela"></div>
+    </div>
+
 <script>
     const colPessoas = ["Nome", "Telefone", "Aniversário", "Email"];
     const propPessoas = ["firstname", "phone", "birthday", "email"];
 
-    const carregarDiv = (dados, divId, propriedades, colunas) => {
-        const div = document.getElementById(divId);
+    let currentPage = 1; // Controla a página atual
+    let loading = false; // Flag para evitar carregamentos múltiplos
+
+    async function carregarPessoas() {
+        if (loading) return; // Evita chamadas simultâneas
+        loading = true;
+
+        const quantidade = document.getElementById("quantidade").value;
+
+        try {
+            let res = await fetch(`https://fakerapi.it/api/v2/persons?_quantity=${quantidade}&_page=${currentPage}`);
+            const pessoas = await res.json();
+
+            if (pessoas.data.length > 0) {
+                adicionarLinhas(pessoas.data, "tabela", propPessoas);
+                currentPage++; // Incrementa a página para o próximo carregamento
+            } else {
+                console.log("Sem mais dados.");
+            }
+        } catch (err) {
+            console.error("Erro ao carregar dados:", err);
+        }
+
+        loading = false; // Libera para o próximo carregamento
+    }
+
+    function adicionarLinhas(dados, divId, propriedades) {
+        const tabelaBody = document.querySelector(`#${divId} tbody`);
+        if (!tabelaBody) {
+            const div = document.getElementById(divId);
+            const colunasT = colPessoas.map((col) => `<th>${col}</th>`).join("");
+
+            div.innerHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            ${colunasT}
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            `;
+        }
 
         const linhas = dados.map(
             (item) =>
@@ -42,31 +85,16 @@
                 </tr>`
         ).join("");
 
-        const colunasT = colunas.map((col) => `<th>${col}</th>`).join("");
-        
-        div.innerHTML = `
-            <table>
-                <thead>
-                    <tr>
-                        ${colunasT}
-                    </tr>
-                </thead>
-                <tbody>${linhas}</tbody>
-            </table>
-        `;
-    };
-
-    async function carregarPessoas() {
-        const quantidade = document.getElementById("quantidade").value;
-
-        try {
-            let res = await fetch(`https://fakerapi.it/api/v2/persons?_quantity=${quantidade}`);
-            const pessoas = await res.json();
-            carregarDiv(pessoas.data, "tabela", propPessoas, colPessoas);
-        } catch (err) {
-            document.getElementById("tabela").innerHTML = "Erro ao carregar dados.";
-        }
+        document.querySelector(`#${divId} tbody`).innerHTML += linhas;
     }
+
+    // Adiciona o evento de scroll ao contêiner
+    document.getElementById("scrollContainer").addEventListener("scroll", () => {
+        const container = document.getElementById("scrollContainer");
+        if (container.scrollTop + container.clientHeight >= container.scrollHeight) {
+            carregarPessoas(); // Carrega mais dados quando o scroll atinge o final
+        }
+    });
 
     function destacarDados() {
         // Remove destaque anterior
@@ -104,10 +132,17 @@
         });
     }
 
-    document.getElementById("botaoTabela").addEventListener("click", carregarPessoas);
+    document.getElementById("botaoTabela").addEventListener("click", () => {
+        currentPage = 1; // Reseta para a primeira página
+        document.getElementById("tabela").innerHTML = ""; // Limpa a tabela
+        carregarPessoas();
+    });
+
     document.getElementById("destaqueFiltro").addEventListener("input", destacarDados);
     document.getElementById("nomeFiltro").addEventListener("input", filtrarPorNome);
+
     // Carrega a tabela automaticamente ao abrir o site
     carregarPessoas();
 </script>
+</body>
 </html>
