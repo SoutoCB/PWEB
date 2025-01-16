@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+      <meta charset="UTF-8"> 
+      <style>
+         /* Estilos para a animação */
+         .project {
+            transition: opacity 0.5s ease-in-out; /* Transição suave de 0.5 segundos */
+            opacity: 1; /* Inicia totalmente visível */
+         }
+
+         .hide {
+            opacity: 0; /* Quando escondida, opacidade 0 (invisível) */
+         }
+      </style>     
+   </head>
+
+   <body>
+      <div id="um" class="project">Carregando cervejas...</div>            
+      <div><button id="botaoCarregar">Mudar</button></div>
+   </body>   
+
+   <script>
+      // Variável de estado para controlar o conteúdo da div
+      let isContentVisible = false;
+
+      function alternarDiv() {
+         let div = document.getElementById("um");
+
+         if (isContentVisible) {
+            // Se o conteúdo está visível, esconde com a classe 'hide'
+            div.classList.add('hide');
+
+            // Aguarda o tempo da animação antes de remover o conteúdo
+            setTimeout(() => {
+               div.innerHTML = ''; // Apaga o conteúdo
+            }, 500); // 500ms corresponde ao tempo da transição
+         } else {
+            // Mostra o conteúdo e faz fade-in
+            div.innerHTML = '<h1>Guinness</h1>';
+            div.classList.remove('hide');
+         }
+
+         // Alterna o estado
+         isContentVisible = !isContentVisible;
+      }
+
+      let botao = document.getElementById("botaoCarregar");
+      botao.addEventListener("click", alternarDiv);
+   </script>
+
+</html>

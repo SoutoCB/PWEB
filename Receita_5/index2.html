@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+
+      <meta charset="UTF-8">    
+      
+      <style>
+         .brown{
+            color: brown;
+         }
+      </style>
+
+   </head>
+
+   
+
+   <body>
+
+      <div id="meu amor"><a id="linkCarregar">Carregar jogos</a></div>            
+
+   </body>   
+
+   
+
+   <script>
+
+      let jogos = ["League of legends", "CS-GO", "Minecraft", "Cross Fire", "Transformice"]
+
+      const transformar = (item) =>{
+
+        return `<tr class="brown"><td>${item}</td></tr>`
+
+      }
+
+      const carregarDiv = (dados) => {
+
+         let div = document.getElementById("meu amor")
+
+        //  let cervejasHtml = [`<h1>${cervejas[0]}</h1>`,`<h1>${cervejas[1]}</h1>`, `<h1>${cervejas[2]}</h1>`] 
+        let dadosHtml = dados.map(transformar)
+
+         div.innerHTML = `
+         <table>${dadosHtml.join("")}</table>
+         <a id="linkOrdenar">Ordenar Jogos</a>
+         <a id="linkEmbara">Embaralhar Jogos</a>
+         `
+
+         document.getElementById("linkOrdenar").addEventListener("click", () => ordenarDiv(dados));
+
+         document.getElementById("linkEmbara").addEventListener("click", () => embaraDiv(dados))
+
+      }
+
+
+      const ordenarDiv = (dados)=> {
+         dados = dados.sort();
+         
+         carregarDiv(dados);
+      }
+
+      const embaraDiv = (dados)=> {
+         dados.sort(() => Math.random() - 0.5);
+
+         carregarDiv(dados);
+      }
+
+      let botao = document.getElementById("linkCarregar")
+
+      botao.addEventListener("click", () => carregarDiv(jogos))                 
+
+   </script>
+
+</html>
+

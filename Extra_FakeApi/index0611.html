@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="quantidade">Quantidade de pessoas por vez:</label>
+        <input type="number" id="quantidade" min="1" value="15">
+        <button id="botaoTabela">Carregar Tabela</button>
+    </div>
+    <div>
+        <label for="destaqueFiltro">Destacar Dado:</label>
+        <input type="search" id="destaqueFiltro" placeholder="Digite para destacar">
+    </div>
+    <div>
+        <label for="nomeFiltro">Pesquisar Nome:</label>
+        <input type="search" id="nomeFiltro" placeholder="Digite um nome">
+    </div>
+    <div id="scrollContainer" >
+        <div id="tabela"></div>
+    </div>
+
+<script src="funcs.js"></script>
+</body>
+</html>
