@@ -1,6 +1,4 @@
-Este projeto foi desenvolvido utilizando Next.js.
-
-Aviso Importante
+Aviso Importante para receitas com Next.js
 
 ⚠️ Diferença entre o nome da pasta e o package.json:
 
