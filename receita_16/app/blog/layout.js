@@ -13,18 +13,12 @@ export const metadata = {
     console.log("montando layout")
     return (
   
-      <html lang="en">
-        
-        <body>
+        <div>
           {children}
-          <Link href="/blog">Ir para o blog </Link>
           <br></br>
-          <Link href="/movies">Ir para movies</Link>
-          <br></br>
-          <Link href="/"> Voltar ao começo</Link>
-          <br></br>
-        </body>
-      </html>
+          <Link href="/blog/post"> Ir a um post</Link>
+        </div>
+       
   
     )
   

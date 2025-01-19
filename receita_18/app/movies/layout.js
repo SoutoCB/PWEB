@@ -1,4 +1,3 @@
-import Link from 'next/link'
 export const metadata = {
 
     title: 'Next.js',
@@ -17,12 +16,6 @@ export const metadata = {
         
         <body>
           {children}
-          <Link href="/blog">Ir para o blog </Link>
-          <br></br>
-          <Link href="/movies">Ir para movies</Link>
-          <br></br>
-          <Link href="/"> Voltar ao começo</Link>
-          <br></br>
         </body>
       </html>
   
